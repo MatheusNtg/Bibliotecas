@@ -1,3 +1,7 @@
+/*
+ESTA ÁRVORE COLOCA OS MENORES NÚMEROS NA ESQUERDA E OS MAIORES NA DIREITA
+*/
+
 #ifndef ARVORE
 #define ARVORE
 #define DEBUG
@@ -7,7 +11,9 @@
 #include <stdlib.h>
 
 /*
-ESTA ÁRVORE COLOCA OS MENORES NÚMEROS NA ESQUERDA E OS MAIORES NA DIREITA
+=========================
+DEFINIÇÃO DO TIPO DE DADO
+=========================
 */
 
 struct Node{
@@ -19,15 +25,61 @@ struct Node{
 typedef struct Node node;
 typedef struct Node ** Root;
 
+/*
+===================
+DEFINIÇÃO DA FUNÇÃO
+===================
+ */
+
+/* 
+    Função : Cria um Nó (Aloca a memória necessária para o nó).
+    
+    Retorno: Retorna um ponteiro para o nó da árvore criado.
+*/
 node * createNode();
+
+/*
+    Função    : Adiciona um nó com um determinado dado em uma árvore existente.
+    
+    Parâmetros:
+        Tree: Ponteiro para o ponteiro da raiz da árvore que se queira adicionar o nó.
+        data: Dado que se deseja adicionar no nó a ser colocado na árvore.
+ */
 void addNode(Root Tree,int data);
+
+/*
+    Função    : Realiza o percuso de pré-ordem em uma árvore existente.
+
+    Parâmetros:
+        Tree: Ponteiro para o ponteiro que indica a raiz da árvore. 
+ */
 void preOrd(Root Tree);
+
+/*
+    Função    : Realiza o percuso de pós-ordem em uma árvore existente.
+
+    Parâmetros:
+        Tree: Ponteiro para o ponteiro que indica a raiz da árvore. 
+ */
 void posOrd(Root Tree);
+
+/*
+    Função    : Realiza o percuso de in-ordem em uma árvore existente.
+
+    Parâmetros:
+        Tree: Ponteiro para o ponteiro que indica a raiz da árvore. 
+ */
 void inOrd(Root Tree);
 
+
+/*
+=========================
+IMPLEMENTAÇÃO DAS FUNÇÕES
+=========================
+ */
 node * createNode(){
     node * newNode;
-    newNode = malloc(sizeof(node));
+    newNode = (node *) malloc(sizeof(node));
     if (newNode != NULL){
         newNode->data = 0;
         newNode->left = NULL;
