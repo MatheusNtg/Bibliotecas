@@ -148,4 +148,16 @@ int isEmpty(head Stack){
     }
 }
 
+node * pop(head Stack){
+    if(!isEmpty(Stack)){
+        node * temp;
+        temp = (*Stack);
+        (*Stack) = (*Stack)->down;
+        temp->down = NULL;
+        return temp;
+    }
+
+    return NULL;
+}
+
 #endif
