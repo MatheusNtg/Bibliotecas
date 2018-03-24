@@ -112,10 +112,10 @@ int push(head Stack,int data){
         return 1;
     }else{
         node * temp;
-        temp = (*Stack);
-        (*Stack) = createStackNode();
-        (*Stack)->down = temp;
-        free(temp);
+        temp = createStackNode();
+        temp->data = data;
+        temp->down = (*Stack);
+        (*Stack) = temp;
         return 1;
     }
     return 0;
@@ -132,6 +132,20 @@ int printStack(head Stack){
         temp = temp->down;
     }
     return 1;
+}
+
+int stackSize(head Stack){
+    int i;
+    for(node * temp = (*Stack); temp != NULL; temp=temp->down)i++;
+    return i;
+}   
+
+int isEmpty(head Stack){
+    if(!stackSize(Stack)){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 #endif
