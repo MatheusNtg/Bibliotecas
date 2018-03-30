@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "../arvores/arvore.h"
 
 /*
 =========================
@@ -10,13 +11,13 @@ DEFINIÇÃO DO TIPO DE DADO
 =========================
 */
 
-struct Node{
-    int data;
-    struct Node * down;
+struct stackNode{
+    node * data;
+    struct stackNode * down;
 };
 
-typedef struct Node node;
-typedef struct Node ** head;
+typedef struct stackNode stackNode;
+typedef struct stackNode ** head;
 /*
 =====================
 DEFINIÇÃO DAS FUNÇÕES
@@ -29,7 +30,7 @@ DEFINIÇÃO DAS FUNÇÕES
 
     Retorno: Retorna um ponteiro para um nó da pilha.
 */
-node * createStackNode();
+stackNode * createstackNode();
 
 /*
     Função       : Adciona um nó na pilha.
@@ -40,7 +41,7 @@ node * createStackNode();
 
     Retorno      : Retorna 1 caso adicione o nó com sucesso e 0 caso contrário. 
 */
-int push(head Stack,int data);
+int push(head Stack,node * data);
 
 /*
     Função       : Exclui um nó da pilha.
@@ -50,7 +51,7 @@ int push(head Stack,int data);
 
     Retorno      : Retorna um ponteiro para o nó excluido da pilha. 
 */
-node * pop(head Stack);
+stackNode * pop(head Stack);
 
 /*
     Função      : Conta a quantidade de elementos presentes na pilha.
@@ -89,14 +90,14 @@ IMPLEMENTAÇÃO DAS FUNÇÕES
 =========================
 */
 
-node * createStackNode(){
+stackNode * createstackNode(){
     
-    node * newNode = (node*) malloc(sizeof(node));
+    stackNode * newStackNode = (stackNode*) malloc(sizeof(stackNode));
     
-    if(newNode != NULL){
-        newNode->data = 0;
-        newNode->down = NULL;
-        return newNode;
+    if(newStackNode != NULL){
+        newStackNode->data = NULL;
+        newStackNode->down = NULL;
+        return newStackNode;
     }
     
     // Daqui para baixo so ocorre caso um erro aconteca.
@@ -105,14 +106,14 @@ node * createStackNode(){
     return NULL;
 }
 
-int push(head Stack,int data){ 
+int push(head Stack,node * data){ 
     if(*Stack == NULL){
-        (*Stack) = createStackNode();
+        (*Stack) = createstackNode();
         (*Stack)->data = data;
         return 1;
     }else{
-        node * temp;
-        temp = createStackNode();
+        stackNode * temp;
+        temp = createstackNode();
         temp->data = data;
         temp->down = (*Stack);
         (*Stack) = temp;
@@ -122,13 +123,13 @@ int push(head Stack,int data){
 }
 
 int printStack(head Stack){
-    node * temp;
+    stackNode * temp;
     temp = (*Stack);
     if (temp == NULL){
         return 0;
     }
     while(temp != NULL){
-        printf("%d\n",temp->data);
+        printf("%p\n",temp->data);
         temp = temp->down;
     }
     return 1;
@@ -136,7 +137,8 @@ int printStack(head Stack){
 
 int stackSize(head Stack){
     int i;
-    for(node * temp = (*Stack); temp != NULL; temp=temp->down)i++;
+    if((*Stack) == NULL) return 0; 
+    for(stackNode * temp = (*Stack); temp != NULL; temp=temp->down)i++;
     return i;
 }   
 
@@ -148,9 +150,9 @@ int isEmpty(head Stack){
     }
 }
 
-node * pop(head Stack){
+stackNode * pop(head Stack){
     if(!isEmpty(Stack)){
-        node * temp;
+        stackNode * temp;
         temp = (*Stack);
         (*Stack) = (*Stack)->down;
         temp->down = NULL;

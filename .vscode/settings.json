@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "stack.h": "c",
+        "arvore.h": "c"
+    }
+}
