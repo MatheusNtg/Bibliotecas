@@ -140,12 +140,13 @@ int addNode(node * list, int data){
     return FALSE;
 }
 
+// Funcao que imprime os documentos da lista
 int printList(node * list){
-    node temp;
-    temp = *list;
+    node temp; //cria um no
+    temp = *list;  //ponteiro para a lista
     if(temp != NULL){
         while(temp->next != NULL){
-            printf("%d ",temp->data);
+            printf("%d ",temp->data);   //imprime o conteudo de data presente no no temp da lista
             temp = temp->next;
         }
         printf("%d\n",temp->data);
