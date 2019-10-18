@@ -10,10 +10,10 @@
 // Struct definition
 // =================
 struct Node{
-    struct Node * next;
-    struct Node * prev;
+    struct Node * next; //Ponteiro do node que aponta para o próximo node
+    struct Node * prev; //POnteiro do node que aponta para o node anterior
     // You can edit this item according to you needs
-    int data;
+    int data;  //conteudo do node
 };
 
 typedef struct Node * node;
