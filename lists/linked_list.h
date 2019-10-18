@@ -106,7 +106,7 @@ void printList(node * list){
     }
     printf("\n");
 }
-
+// Funcao que retorna o tamanho da lista
 int listSize(node * list){
     if ((*list) == NULL) return 0;
     else{
