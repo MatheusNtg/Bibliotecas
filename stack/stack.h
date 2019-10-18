@@ -105,7 +105,7 @@ stackNode * createstackNode(){
 
     return NULL;
 }
-
+//Esta e a funcao que insere um no na pilha
 int push(head Stack,node * data){ 
     if(*Stack == NULL){
         (*Stack) = createstackNode();
